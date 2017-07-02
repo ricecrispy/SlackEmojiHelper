@@ -7,7 +7,7 @@ Be more expressive with your emojis and comments with these commands on Slack!
 Description: When you just really need to spam a particular emoji to get your point across.
 Usage:
 ```
-/spam/{emoji}/{num of emoji}
+/spam/{emoji}/{numbers of emoji}
 ```
 
 ### insertClaps
