@@ -20,5 +20,5 @@ Usage:
 ## Dependencies
 [httprouter](https://github.com/julienschmidt/httprouter) - The router 
 
-##Running on
+## Running on
 [Heroku](https://slackemojihelper.herokuapp.com)
