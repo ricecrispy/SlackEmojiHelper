@@ -53,6 +53,6 @@ func main() {
 	router.GET("/spam/:emoji/:num", Spam)
 
 	port := os.Getenv("PORT")
-
-	log.Fatal(http.ListenAndServe(port, router))
+	fmt.Println(":" + port)
+	log.Fatal(http.ListenAndServe(":"+port, router))
 }
