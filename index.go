@@ -51,5 +51,5 @@ func main() {
 	router.GET("/insertclaps/:input", InsertClaps)
 	router.GET("/spam/:emoji/:num", Spam)
 
-	log.Fatal(http.ListenAndServe("https://slackemojihelper.herokuapp.com", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }
