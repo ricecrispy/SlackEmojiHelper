@@ -11,8 +11,8 @@ import (
 )
 
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprintln(w, "Command - spam: /spam/{emoji}/{num of emoji}")
-	fmt.Fprintln(w, "Command - insert claps emojis between each word: /insertclaps/{sentence}")
+	fmt.Fprintln(w, "Command - Spam: /spam/{emoji}/{num of emoji}")
+	fmt.Fprintln(w, "Command - Insert claps emojis between each word: /insertclaps/{sentence}")
 	fmt.Fprintln(w, "Skrt Skrt.")
 }
 
