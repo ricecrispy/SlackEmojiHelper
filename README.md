@@ -1,9 +1,19 @@
 # SlackEmojiHelper
-Slack just got a lot more fun with these commands!
+Be more expressive with your emojis and comments with these commands on Slack!
 
-Commands:
-spam: /spam/{emoji}/{num of emoji}
-  When you just really need to spam a particular emoji to get your point across.
+## Commands
 
-insert claps emojis between each word: /insertclaps/{sentence}
-  When you need to let a brother knows that you are feeling ratchet.
+### spam
+Description: When you just really need to spam a particular emoji to get your point across.
+Usage:
+```
+/spam/{emoji}/{num of emoji}
+```
+
+### insertClaps
+Description: When you need to let a brother knows that you are feeling ratchet. Insert claps emojis between each word.
+Usage:
+```
+/insertclaps/{sentence}
+```
+
