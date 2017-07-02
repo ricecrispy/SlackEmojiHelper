@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 
@@ -51,5 +52,7 @@ func main() {
 	router.GET("/insertclaps/:input", InsertClaps)
 	router.GET("/spam/:emoji/:num", Spam)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	port := os.Getenv("PORT")
+
+	log.Fatal(http.ListenAndServe(port, router))
 }
