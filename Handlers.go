@@ -36,7 +36,7 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, _ httprouter
 	slackRequest := SlackPostRequest{}
 	
 	json.NewDecoder(r.Body).Decode(&slackRequest)
-	WriteJson(w, slackRequest.Text)
+	WriteJson(w, slackRequest)
 }
 
 
