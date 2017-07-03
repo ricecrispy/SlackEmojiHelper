@@ -16,26 +16,7 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintln(w, "Skrt Skrt.")
 }
 
-func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {	
-	input := ps.ByName("input")
-	
-	output := CreateClapsOutput(input)
-
-	WriteJson(w, output)
-}
-
-
-
-func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	err := r.ParseForm()
-	if err != nil {
-		panic(err)
-	}
-	output := CreateClapsOutput(string(r.Form.Get("text")))
-	WriteJson(w, output)
-}
-
-func CreateClapsOutput(input string) string {
+func createClapsOutput(input string) string {
 	inputArr := strings.Split(input, " ")
 
 	for i := 0; i < len(inputArr); i++ {
@@ -46,7 +27,22 @@ func CreateClapsOutput(input string) string {
 	return strings.Join(inputArr, " ")
 }
 
+func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	input := ps.ByName("input")
 
+	output := createClapsOutput(input)
+
+	writeJson(w, output)
+}
+
+func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	err := r.ParseForm()
+	if err != nil {
+		panic(err)
+	}
+	output := createClapsOutput(string(r.Form.Get("text")))
+	writeJson(w, output)
+}
 
 func Spam(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	output := ""
@@ -59,13 +55,13 @@ func Spam(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 			output += emoji
 		}
 
-		WriteJson(w, output)
+		writeJson(w, output)
 	}
 }
 
-func WriteJson(w http.ResponseWriter, output string) {
+func writeJson(w http.ResponseWriter, output string) {
 	outputJson := OutputJson{"in_channel", output}
-	
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(outputJson)
 }
