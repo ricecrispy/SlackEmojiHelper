@@ -33,7 +33,7 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprintln(w, r.Body)
+	fmt.Fprintln(w, string(r.Body))
 }
 
 
