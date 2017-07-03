@@ -30,6 +30,16 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	WriteJson(w, output)
 }
 
+
+
+func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request) {
+	WriteJson(w, r)
+}
+
+
+
+
+
 func Spam(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	output := ""
 	emoji := ps.ByName("emoji")
