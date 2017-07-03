@@ -33,11 +33,12 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	slackRequest := SlackPostRequest{}
-	
-	json.NewDecoder(r.Body).Decode(&slackRequest)
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(slackRequest)
+	requestDump, err := http.httputil.DumpRequest(r, true)
+	if err != nil {
+		panic(err)
+	} else {
+		WriteJson(w, string(requestDump))
+	}
 }
 
 
