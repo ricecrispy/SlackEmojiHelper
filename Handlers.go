@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"io"
+	"log"
 
 	"github.com/julienschmidt/httprouter"
 )
