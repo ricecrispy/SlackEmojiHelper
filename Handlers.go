@@ -40,7 +40,7 @@ func CreateClapsOutput(input string) string {
 
 	for i := 0; i < len(inputArr); i++ {
 		word := inputArr[i]
-		inputArr[i] = word + " :clap:"
+		inputArr[i] = strings.ToUpper(word) + " :clap:"
 	}
 
 	return strings.Join(inputArr, " ")
