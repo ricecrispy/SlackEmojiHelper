@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"net/http/httputil"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -17,6 +18,12 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 }
 
 func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	requestDump, err := httputil.DumpRequest(r, true)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(string(requestDump))
+	
 	input := ps.ByName("input")
 	inputArr := strings.Split(input, " ")
 
