@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"net/http/httputil"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -17,22 +16,10 @@ func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprintln(w, "Skrt Skrt.")
 }
 
-func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	requestDump, err := httputil.DumpRequest(r, true)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(string(requestDump))
-	
+func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {	
 	input := ps.ByName("input")
-	inputArr := strings.Split(input, " ")
-
-	for i := 0; i < len(inputArr); i++ {
-		word := inputArr[i]
-		inputArr[i] = word + " :clap:"
-	}
-
-	output := strings.Join(inputArr, " ")
+	
+	output := CreateClapsOutput(input)
 
 	WriteJson(w, output)
 }
@@ -44,10 +31,20 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 	if err != nil {
 		panic(err)
 	}
-	fmt.Fprintln(w, string(r.Form.Get("text")))
+	output := CrateClapsOutput(string(r.Form.Get("text")))
+	WriteJson(w, output)
 }
 
+func CreateClapsOutput(input string) string {
+	inputArr := strings.Split(input, " ")
 
+	for i := 0; i < len(inputArr); i++ {
+		word := inputArr[i]
+		inputArr[i] = word + " :clap:"
+	}
+
+	return strings.Join(inputArr, " ")
+}
 
 
 
