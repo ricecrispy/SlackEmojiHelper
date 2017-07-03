@@ -44,7 +44,7 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 	if err != nil {
 		panic(err)
 	}
-	fmt.Fprintln(w, string(r.Form))
+	fmt.Fprintln(w, string(r.Form.Get("text")))
 }
 
 
