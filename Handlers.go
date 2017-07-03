@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"net/http/httputil"
 	"strconv"
 	"strings"
 
@@ -33,7 +34,7 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	requestDump, err := http.httputil.DumpRequest(r, true)
+	requestDump, err := httputil.DumpRequest(r, true)
 	if err != nil {
 		panic(err)
 	} else {
