@@ -13,6 +13,7 @@ func main() {
 	router := httprouter.New()
 	router.GET("/", Index)
 	router.GET("/insertclaps/:input", InsertClaps)
+	router.POST("/insertclaps/", InsertClapsPostRequest)
 	router.GET("/spam/:emoji/:num", Spam)
 
 	port := os.Getenv("PORT")
