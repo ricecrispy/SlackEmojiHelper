@@ -32,8 +32,8 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 
-func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request) {
-	WriteJson(w, "Testing this Post Request Handler.")
+func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	WriteJson(w, r.body)
 }
 
 
