@@ -40,7 +40,11 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	
+	err := r.ParseForm()
+	if err != nil {
+		panic(err)
+	}
+	fmt.Fprintln(w, string(r.Form))
 }
 
 
