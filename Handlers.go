@@ -33,7 +33,7 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	decoder := json.NewDecoder(r.body)
+	dec := json.NewDecoder(r.Body)
 	for {
 		t, err := dec.Token()
 		if err == io.EOF {
