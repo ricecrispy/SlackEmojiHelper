@@ -31,7 +31,7 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 	if err != nil {
 		panic(err)
 	}
-	output := CrateClapsOutput(string(r.Form.Get("text")))
+	output := CreateClapsOutput(string(r.Form.Get("text")))
 	WriteJson(w, output)
 }
 
