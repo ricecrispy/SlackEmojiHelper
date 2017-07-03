@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"io"
 	"log"
 
 	"github.com/julienschmidt/httprouter"
@@ -35,22 +34,11 @@ func InsertClaps(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
 
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
-	dec := json.NewDecoder(r.Body)
-	for {
-		t, err := dec.Token()
-		if err == io.EOF {
-			break
-		}
-		if err != nil {
-			log.Fatal(err)
-		}
-		fmt.Printf("%T: %v", t, t)
-		if dec.More() {
-			fmt.Printf(" (more)")
-		}
-		fmt.Printf("\n")
-	}
+	slackRequest := SlackPostRequest{}
+	json.NewDecoder(r.Body).Decode(&slackRequest)
 	
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(slackRequest)
 }
 
 
