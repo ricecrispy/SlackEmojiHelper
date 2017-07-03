@@ -64,7 +64,8 @@ func Spam(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 }
 
 func WriteJson(w http.ResponseWriter, output string) {
-	outputJson := OutputJson{output}
+	outputJson := OutputJson{"ephemeral", output}
+	
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(outputJson)
 }
