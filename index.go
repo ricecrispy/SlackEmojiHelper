@@ -12,9 +12,12 @@ import (
 func main() {
 	router := httprouter.New()
 	router.GET("/", Index)
-	router.GET("/insertclaps/:input", InsertClaps)
+
+	router.GET("/insertclaps/:input", InsertClapsGetRequest)
 	router.POST("/insertclaps/", InsertClapsPostRequest)
-	router.GET("/spam/:emoji/:num", Spam)
+
+	router.GET("/spam/:emoji/:num", SpamGetRequest)
+	router.POST("/spam/", SpamPostRequest)
 
 	port := os.Getenv("PORT")
 	if port != "" {
