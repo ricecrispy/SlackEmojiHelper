@@ -88,15 +88,9 @@ func writeJSON(w http.ResponseWriter, output string) {
 
 func writeJSONToResponseURL(w http.ResponseWriter, output string, url string) {
 	outputJSON := OutputJSON{"in_channel", output}
-
-	//w.Header().Set("Content-Type", "application/json")
-	//json.NewEncoder(w).Encode(outputJSON)
-
-	//values := map[string]string{"username": username, "password": password}
-
-	jsonValue, _ := json.Marshal(outputJSON)
-
-	_, err := http.Post(url, "application/json", bytes.NewBuffer(jsonValue))
+	jBuffer := new(bytes.Buffer)
+	json.NewEncoder(jBuffer).Encode(outputJSON)
+	_, err := http.Post(url, "application/json", jBuffer)
 	if err != nil {
 		panic(err)
 	}
