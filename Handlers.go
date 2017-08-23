@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -38,12 +39,16 @@ func InsertClapsGetRequest(w http.ResponseWriter, r *http.Request, ps httprouter
 
 //InsertClapsPostRequest - POST request for InsertClaps
 func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
+	w.WriteHeader(http.StatusOK)
+
 	err := r.ParseForm()
 	if err != nil {
 		panic(err)
 	}
-	output := createClapsOutput(string(r.Form.Get("text")))
-	writeJSON(w, output)
+
+	fmt.Fprintln(w, r.Form.Get("response_url"))
+	//writeJSON(w, (createClapsOutput(string(r.Form.Get("text")))))
+	writeJSONToResponseUrl(w, createClapsOutput(string(r.Form.Get("text"))), r.Form.Get("response_url"))
 }
 
 //SpamGetRequest - GET reqeust for Spam
@@ -79,4 +84,20 @@ func writeJSON(w http.ResponseWriter, output string) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(outputJSON)
+}
+
+func writeJSONToResponseUrl(w http.ResponseWriter, output string, url string) {
+	outputJSON := OutputJSON{"in_channel", output}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(outputJSON)
+
+	//values := map[string]string{"username": username, "password": password}
+
+	jsonValue, _ := json.Marshal(outputJSON)
+
+	_, err := http.Post(url, "application/json", bytes.NewBuffer(jsonValue))
+	if err != nil {
+		panic(err)
+	}
 }
