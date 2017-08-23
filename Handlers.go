@@ -86,11 +86,11 @@ func writeJSON(w http.ResponseWriter, output string) {
 	json.NewEncoder(w).Encode(outputJSON)
 }
 
-func writeJSONToResponseUrl(w http.ResponseWriter, output string, url string) {
+func writeJSONToResponseURL(w http.ResponseWriter, output string, url string) {
 	outputJSON := OutputJSON{"in_channel", output}
 
-	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(outputJSON)
+	//w.Header().Set("Content-Type", "application/json")
+	//json.NewEncoder(w).Encode(outputJSON)
 
 	//values := map[string]string{"username": username, "password": password}
 
