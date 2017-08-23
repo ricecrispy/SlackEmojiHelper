@@ -46,9 +46,9 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 		panic(err)
 	}
 
-	fmt.Fprintln(w, r.Form.Get("response_url"))
+	//fmt.Fprintln(w, r.Form.Get("response_url"))
 	//writeJSON(w, (createClapsOutput(string(r.Form.Get("text")))))
-	writeJSONToResponseURL(w, createClapsOutput(string(r.Form.Get("text"))), r.Form.Get("response_url"))
+	writeJSONToResponseURL(createClapsOutput(string(r.Form.Get("text"))), r.Form.Get("response_url"))
 }
 
 //SpamGetRequest - GET reqeust for Spam
@@ -86,7 +86,7 @@ func writeJSON(w http.ResponseWriter, output string) {
 	json.NewEncoder(w).Encode(outputJSON)
 }
 
-func writeJSONToResponseURL(w http.ResponseWriter, output string, url string) {
+func writeJSONToResponseURL(output string, url string) {
 	outputJSON := OutputJSON{"in_channel", output}
 	jBuffer := new(bytes.Buffer)
 	json.NewEncoder(jBuffer).Encode(outputJSON)
