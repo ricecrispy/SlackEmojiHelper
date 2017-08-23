@@ -48,7 +48,7 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 
 	fmt.Fprintln(w, r.Form.Get("response_url"))
 	//writeJSON(w, (createClapsOutput(string(r.Form.Get("text")))))
-	writeJSONToResponseUrl(w, createClapsOutput(string(r.Form.Get("text"))), r.Form.Get("response_url"))
+	writeJSONToResponseURL(w, createClapsOutput(string(r.Form.Get("text"))), r.Form.Get("response_url"))
 }
 
 //SpamGetRequest - GET reqeust for Spam
