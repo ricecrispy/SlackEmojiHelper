@@ -46,7 +46,7 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 	userName := r.Form.Get("user_name")
 	userID := r.Form.Get("user_id")
 	modifiedText := createClapsOutput(string(r.Form.Get("text")))
-	finalText := fmt.Sprintf("@%s (%s) said: %s", userName, userID, modifiedText)
+	finalText := fmt.Sprintf("<@%s|%s> said: %s", userID, userName, modifiedText)
 	url := r.Form.Get("response_url")
 	writeJSONToResponseURL(finalText, url)
 }
