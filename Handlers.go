@@ -43,7 +43,12 @@ func InsertClapsPostRequest(w http.ResponseWriter, r *http.Request, ps httproute
 		panic(err)
 	}
 
-	writeJSONToResponseURL(createClapsOutput(string(r.Form.Get("text"))), r.Form.Get("response_url"))
+	userName := r.Form.Get("user_name")
+	userID := r.Form.Get("user_id")
+	modifiedText := createClapsOutput(string(r.Form.Get("text")))
+	finalText := fmt.Sprintf("%s (%s) said: %s", userName, userID, modifiedText)
+	url := r.Form.Get("response_url")
+	writeJSONToResponseURL(finalText, url)
 }
 
 //Logic for writing the output in Json format for Slack
