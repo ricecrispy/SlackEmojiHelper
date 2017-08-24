@@ -16,9 +16,6 @@ func main() {
 	router.GET("/insertclaps/:input", InsertClapsGetRequest)
 	router.POST("/insertclaps/", InsertClapsPostRequest)
 
-	router.GET("/spam/:emoji/:num", SpamGetRequest)
-	router.POST("/spam/", SpamPostRequest)
-
 	port := os.Getenv("PORT")
 	if port != "" {
 		fmt.Println("Running in PRODUCTION at port :" + port + "......")
