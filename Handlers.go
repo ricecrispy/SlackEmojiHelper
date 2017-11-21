@@ -12,7 +12,7 @@ import (
 
 //Index - The landing page
 func Index(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-	fmt.Fprintln(w, "Skrt Skrt.")
+	fmt.Fprintln(w, "Hello!")
 }
 
 //Logic to add the claps emoji to the user input

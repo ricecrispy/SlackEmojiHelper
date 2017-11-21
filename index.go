@@ -13,6 +13,7 @@ func main() {
 	router := httprouter.New()
 	router.GET("/", Index)
 
+	//The Angry Translator slack command
 	router.GET("/insertclaps/:input", InsertClapsGetRequest)
 	router.POST("/insertclaps/", InsertClapsPostRequest)
 
